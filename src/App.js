@@ -4,6 +4,7 @@ import axios from 'axios';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
 import Todos from './Components/Todos';
+import Photos from './Components/Photos';
 import './App.css';
 
 
@@ -13,7 +14,8 @@ class App extends Component {
     // initial state keys will be here
     this.state = {
       projects: [],
-      todos: []
+      todos: [],
+      photos: []
     }
   }
 
@@ -60,6 +62,25 @@ class App extends Component {
       })
   }
 
+  getPhotos() {
+    const url = 'https://jsonplaceholder.typicode.com/photos?albumId=5';
+    const params = {
+      url: url,
+      dataType: 'json',
+      cache: false
+    };
+
+    axios.get(url, params)
+    .then((response) => {
+      this.setState({photos: response.data}, () => {
+        console.log(this.state)
+      }).bind(this)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   getProjects() {
     this.setState({
       projects: [
@@ -87,10 +108,12 @@ class App extends Component {
   componentWillMount() {
     this.getProjects();
     this.getTodos();
+    this.getPhotos();
   }
 
   componentDidMount() {
     this.getTodos();
+    this.getPhotos();
   }
 
   handleAddProject(project) {
@@ -109,6 +132,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Photos photos={this.state.photos} />
+        <hr />
         <AddProject addProject={this.handleAddProject.bind(this)}/>
         <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)}/>
         <hr />
