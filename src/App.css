@@ -1,0 +1,44 @@
+html {
+  font-family: 'Trebuchet MS';
+  text-align: center;
+}
+
+.Todos {
+  margin: 10vh 20vw;
+  padding: 5vh 10vw;
+  border: 1px solid black;
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.Todo:nth-child(even) {
+  color: red;
+}
+
+.Projects {
+  margin: 10vh 20vw;
+  padding: 5vh 10vw;
+  border: 1px solid black;
+}
+
+.Project:nth-child(even) {
+  color: red;
+}
+
+.Photo {
+  padding: 20px 10px;
+  margin: 20px 0;
+}
+
+.Photos {
+  text-align: left;
+}
+
+.PhotoImage {
+  float: left;
+  margin-right: 10px;
+}
+
+.PhotoTitle {
+  margin-top: 20px;
+}
